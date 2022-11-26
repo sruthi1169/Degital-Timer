@@ -1,130 +1,88 @@
 import {Component} from 'react'
+
 import './index.css'
 
 class DigitalTimer extends Component {
-  state = {minutes: 25, seconds: 0, isStatus: false}
-
-  componentDidMount() {
-    this.timerId = setInterval(this.time, 1000)
+  state = {
+    isStart: true,
+    count: 25,
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timerId)
+  onChangeButtonText = () => {
+    this.setState(prev => ({isStart: !prev.isStart}))
   }
 
-  onToggleClock = () => {
-    this.setState(prevState => ({isStatus: !prevState.isStatus}))
+  onResetEveryThing = () => {
+    this.setState({isStart: true})
   }
 
-  onIncrement = () => {
-    this.setState(prevState => ({minutes: prevState.minutes + 1}))
+  onDecreaseCount = () => {
+    this.setState(prev => ({count: prev.count - 1}))
   }
 
-  onDecrement = () => {
-    this.setState(prevState => ({minutes: prevState.minutes - 1}))
-  }
-
-  onClickRest = () => {
-    this.setState({minutes: 25, seconds: 0, isStatus: false})
-    clearInterval(this.timerId)
-  }
-
-  time = () => {
-    const {minutes, seconds, isStatus} = this.state
-
-    const remainSeconds = minutes * 60 - 1 + seconds
-    const minutesCal = Math.floor(remainSeconds / 60)
-    const secondsCal = Math.floor(remainSeconds % 60)
-    const timerCompleted = secondsCal === minutesCal * 60
-
-    if (timerCompleted) {
-      this.setState({isStatus: false, seconds: 0})
-
-      clearInterval(this.timerId)
-    }
-    if (isStatus === true) {
-      this.setState({
-        minutes: minutesCal,
-        seconds: secondsCal,
-      })
-    }
+  onIncreaseCount = () => {
+    this.setState(prev => ({count: prev.count + 1}))
   }
 
   render() {
-    const {minutes, seconds, isStatus} = this.state
-    const playUrl = 'https://assets.ccbp.in/frontend/react-js/play-icon-img.png'
-    const pauseUrl =
-      'https://assets.ccbp.in/frontend/react-js/pause-icon-img.png'
-    const minutesStr = minutes > 9 ? minutes : `0${minutes}`
-    const secondsStr = seconds > 9 ? seconds : `0${seconds}`
-
+    const {isStart, count} = this.state
     return (
-      <div className="bg-container">
-        <h1 className="heading">Digital Timer</h1>
-        <div className="container">
+      <div className="app-container">
+        <h1 className="app-container-heading">Digital Timer</h1>
+        <div className="main-timer-container">
           <div className="timer-container">
-            <div className="showtime-card">
-              <h1 className="time">
-                {minutesStr}:{secondsStr}
-              </h1>
-              <p className="status">{isStatus ? 'Running' : 'Paused'}</p>
+            <div className="running-time">
+              <p className="timer">25:00</p>
+              <p className="timer-text">{isStart ? 'Paused' : 'Running'}</p>
             </div>
           </div>
-          <div className="time-control-container">
-            <div className="play-pause-reset-card">
-              <div className="play-pause-card">
-                <button
-                  className="play-pause-btn"
-                  type="button"
-                  onClick={this.onToggleClock}
-                >
-                  {isStatus ? (
-                    <img
-                      src={pauseUrl}
-                      className="play-pause-img"
-                      alt="pause icon"
-                    />
-                  ) : (
-                    <img
-                      src={playUrl}
-                      className="play-pause-img"
-                      alt="play icon"
-                    />
-                  )}
-                  {isStatus ? 'Pause' : 'Start'}
-                </button>
-              </div>
-              <div className="reset-card">
-                <button
-                  onClick={this.onClickRest}
-                  type="button"
-                  className="play-pause-btn"
-                >
-                  <img
-                    src="https://assets.ccbp.in/frontend/react-js/reset-icon-img.png"
-                    alt="reset icon"
-                    className="play-pause-img"
-                  />
-                </button>
-                <p className="play-pause-name">Reset</p>
-              </div>
-            </div>
-            <p className="description">Set Timer limit</p>
-            <div className="inc-dec-btn-container">
+          <div className="main-set-timer-container">
+            <div className="buttons-container">
               <button
-                disabled={isStatus}
-                onClick={this.onDecrement}
                 type="button"
-                className="inc-dec-btn"
+                className="button"
+                onClick={this.onChangeButtonText}
+              >
+                <img
+                  alt="play icon"
+                  className="play img"
+                  src={
+                    isStart
+                      ? 'https://assets.ccbp.in/frontend/react-js/play-icon-img.png'
+                      : 'https://assets.ccbp.in/frontend/react-js/pause-icon-img.png'
+                  }
+                />
+                {isStart ? 'Start' : 'Pause'}
+              </button>
+              <button
+                type="button"
+                className="button"
+                onClick={this.onResetEveryThing}
+              >
+                <img
+                  alt="reset icon"
+                  className="reset img"
+                  src="https://assets.ccbp.in/frontend/react-js/reset-icon-img.png"
+                />
+                Reset
+              </button>
+            </div>
+            <p className="timer-text2">set Timer limit</p>
+            <div>
+              <button
+                type="button"
+                className="button"
+                onClick={this.onDecreaseCount}
               >
                 -
               </button>
-              <p className="time-inc-dec-text">{minutes}</p>
+              <button type="button" className="button special">
+                {count}
+              </button>
               <button
-                disabled={isStatus}
-                onClick={this.onIncrement}
                 type="button"
-                className="inc-dec-btn"
+                className="button"
+                onClick={this.onIncreaseCount}
               >
                 +
               </button>
@@ -135,4 +93,5 @@ class DigitalTimer extends Component {
     )
   }
 }
+
 export default DigitalTimer
