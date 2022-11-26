@@ -1,0 +1,126 @@
+.bg-container {
+  background-image: linear-gradient(to right, #ffffff, #cffcf1);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-grow: 1;
+  flex-shrink: 0;
+  align-items: center;
+}
+.timer-container {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/digital-timer-elapsed-bg.png');
+  height: 400px;
+  width: 400px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.showtime-card {
+  background-color: #ffffff;
+  height: 100px;
+  width: 100px;
+  border-radius: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.time {
+  color: #00d9f5;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: roboto;
+  margin: 0px;
+}
+.status {
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: roboto;
+  margin: 0px;
+}
+
+.time-control-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.play-pause-reset-card {
+  display: flex;
+  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.play-pause-card {
+  display: flex;
+  margin: 5px;
+}
+.play-pause-btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.play-pause-img {
+  width: 40px;
+  height: 40px;
+}
+.play-pause-name {
+  color: #0f172a;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: roboto;
+}
+.reset-card {
+  display: flex;
+  margin: 5px;
+}
+.description {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: roboto;
+  margin: 0px;
+  margin-top: 30px;
+}
+.inc-dec-btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.inc-dec-btn {
+  border: none;
+  font-size: 30px;
+  font-weight: bold;
+  background-color: transparent;
+  margin: 20px;
+  cursor: pointer;
+}
+.time-inc-dec-text {
+  background-color: #00d9f5;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: roboto;
+  padding: 10px;
+}
